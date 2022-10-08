@@ -18,10 +18,19 @@ def get_matrix_with_file_csv(file_csv) -> tuple:
 def search_combination(object_list: list) -> list:
     """Get from combinations from the list of currencies returns a list of all possible combinations"""
     combination_list = list()
-    for elem in permutations(object_list, (len(object_list) - 1)):
-        first_el = (elem[0],)
-        element = elem + first_el
-        combination_list.append(list(element))
+    combo = 2
+    if len(object_list) > 3:
+        while combo < len(object_list):
+            for elem in permutations(object_list, combo):
+                first_el = (elem[0],)
+                element = elem + first_el
+                combination_list.append(list(element))
+            combo += 1
+    else:
+        for elem in permutations(object_list, len(object_list) - 1):
+            first_el = (elem[0],)
+            element = elem + first_el
+            combination_list.append(list(element))
     return combination_list
 
 
@@ -48,24 +57,25 @@ def get_result_with_combo(object_list: list, object_dict: dict) -> dict:
     index_first_el = 0
     index_second_el = 1
     dict_result = dict()
+    temp_res = 1
+    lst_currency = []
     for el in object_list:
-        temp_res = None
-        res = None
         while True:
-            if temp_res is None and res is None:
-                res = object_dict[el[index_first_el]+"/"+el[index_second_el]]
-                temp_res = object_dict[el[index_first_el]+"/"+el[index_second_el]]
+            lst_currency.append(object_dict[el[index_first_el] + "/" + el[index_second_el]])
+            if index_first_el < (len(el) - 1) and index_second_el < (len(el) - 1):
+                index_first_el += 1
+                index_second_el += 1
             else:
-                res *= object_dict[el[index_first_el] + "/" + el[index_second_el]]
-                if index_first_el < (len(el)-1) and index_second_el < (len(el)-1):
-                    index_first_el += 1
-                    index_second_el += 1
-                else:
-                    if (temp_res+(temp_res/100)) <= res:
-                        dict_result[" ".join(el)] = round((res/temp_res), 3)
-                    break
+                for elem in lst_currency:
+                    temp_res *= elem
+                if ((temp_res-1)*100) > 1:
+                    dict_result[" ".join(el)] = round(((temp_res-1)*100), 2)
+                break
+                
         index_first_el = 0
         index_second_el = 1
+        temp_res = 1
+        lst_currency = []
     return dict_result
 
 
@@ -94,4 +104,3 @@ if __name__ == '__main__':
             print(f'Not found file in path {path}')
     except IndexError:
         print('Not found path. Specify the file path')
-    
