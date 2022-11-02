@@ -1,5 +1,4 @@
 # Currency Trading
-___
 
 Given a matrix of currency pair exchange rates, a Python 3.10 algorithm is built that either finds a profitable risk-free trading strategy and presents it,
 or prints "no risk-free opportunities" in case there is no profitable risk-free currency trading strategy.
@@ -11,9 +10,9 @@ To run the script, use the command in terminal:
 Where `PATH` is the path to your .csv file
 
 ## Example
-____
 
 ### Input
+___
 
 Matrix of n currency exchange rates similar to:
 
@@ -33,11 +32,11 @@ Matrix of n currency exchange rates similar to:
 
 
 ### Output
+___
 
     Curr.1 Curr.2 Curr.1 conversion rate 5.6
 
 ## Docker
-___
 
 Install Docker 
 
