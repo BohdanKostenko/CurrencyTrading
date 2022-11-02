@@ -1,14 +1,14 @@
 import sys
 import os
 import pandas as pd
-from itertools import *
+from itertools import permutations
 from functools import reduce
 
 
 def get_matrix_with_file_csv(file_csv) -> tuple:
     """Select columns from the file, convert to a matrix, get a list of currencies"""
     colm = file_csv.columns
-    currency_list = [c for c in colm[1:]]
+    currency_list = colm[1:]
     currency_matrix = list()
     for el in file_csv.values:
         el_matrix = list(map(lambda el_list: float(el_list), el[1:]))
@@ -92,8 +92,10 @@ if __name__ == '__main__':
                     print(result)
                     break
                 else:
-                    iter_count += 1
-        
+                    if iter_count < len(list_currency):
+                        iter_count += 1
+                    else:
+                        break
         else:
             print(f'Not found file in path {path}')
     except IndexError:
