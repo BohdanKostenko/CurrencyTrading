@@ -15,5 +15,8 @@ def test_return_max_result():
     res = max(dict_object_1)
     
     assert res_func_1 == f'{res} conversion rate {dict_object_1[res]}'
+    assert type(res_func_1) == str
+    assert type(res_func_1) is not None
     assert res_func_2 is None
+    assert type(res_func_2) is not str
     
