@@ -20,3 +20,5 @@ def test_return_max_result():
     assert res_func_2 is None
     assert type(res_func_2) is not str
     
+    
+def

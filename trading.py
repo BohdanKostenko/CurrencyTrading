@@ -87,7 +87,6 @@ if __name__ == '__main__':
                 combo_list = search_combination(list_currency, iter_count)
                 currency_dict = get_dictionary_with_currency_pairs(read_file_csv)
                 result_dict = get_result_with_combo(combo_list, currency_dict)
-                print(result_dict)
                 result = return_max_result(result_dict)
                 if result is not None:
                     print(result)
