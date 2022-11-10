@@ -21,4 +21,3 @@ def test_return_max_result():
     assert type(res_func_2) is not str
     
     
-def
