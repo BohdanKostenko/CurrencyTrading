@@ -1,5 +1,3 @@
 .idea/
-.gitignore
 .pytest_cache
 currency _matrix/
-test_csv/
